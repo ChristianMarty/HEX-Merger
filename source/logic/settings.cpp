@@ -1,7 +1,6 @@
 #include "settings.h"
 
-Settings::Settings(QObject *parent)
-    : QObject{parent}
+Settings::Settings()
 {}
 
 void Settings::addInputFile(const Item &inputFileItem)

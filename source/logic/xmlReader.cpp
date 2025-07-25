@@ -69,7 +69,45 @@ Settings::Item XmlReader::_parseFileItem(QDomElement &item)
         output.range = _parseRange(range);
     }
 
+    QDomElement transform = item.firstChildElement("transform");
+    while(!transform.isNull()){
+        output.transform.append(_parseTransformItem(transform));
+        transform = transform.nextSiblingElement("transform");
+    }
+
     return output;
+}
+
+Settings::Transform XmlReader::_parseTransformItem(QDomElement &item)
+{
+    if(!item.hasAttribute("type")){
+        return Settings::Transform();
+    }
+
+    Settings::Transform transform;
+
+    QDomElement name = item.firstChildElement("name");
+    if(!name.isNull()){
+        transform.name = name.text().trimmed();
+    }
+
+    QString type = item.attribute("type").toLower().trimmed();
+
+    if(type == "set"){
+        transform.type = Settings::TransformType::Set;
+
+        QDomElement input = item.firstChildElement("input");
+        if(!input.isNull()){
+            transform.setting.set.inputValue = _parseNumber(input.text());
+        }
+
+        QDomElement output = item.firstChildElement("output");
+        if(!output.isNull()){
+            transform.setting.set.outputAddress = _parseNumber(output.text());
+        }
+    }
+
+    return transform;
 }
 
 QuCLib::HexFileParser::Range XmlReader::_parseRange(QDomElement &item)

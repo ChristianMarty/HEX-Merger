@@ -4,17 +4,33 @@
 #include <QObject>
 #include "QuCLib/source/hexFileParser.h"
 
-class Settings : public QObject
+class Settings
 {
-    Q_OBJECT
 public:
-    explicit Settings(QObject *parent = nullptr);
+    explicit Settings(void);
+
+    enum class TransformType{
+        Undefined,
+        Set
+    };
+
+    struct Transform {
+        QString name;
+        TransformType type = TransformType::Undefined;
+        union Setting {
+            struct Set {
+                uint32_t inputValue;
+                uint32_t outputAddress;
+            }set;
+        } setting;
+    };
 
     struct Item {
         QString name;
         QString path;
         QuCLib::HexFileParser::Range range;
         uint32_t offset = 0;
+        QList<Transform> transform;
     };
 
     void addInputFile(const Item &inputFileItem);

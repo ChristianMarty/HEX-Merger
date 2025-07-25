@@ -12,13 +12,12 @@ class FileMerger : public QObject
 public:
     explicit FileMerger(QObject *parent = nullptr);
 
-    void initializeFromSettings(void);
-
     QuCLib::HexFileParser outputBinary() const;
-
     QList<FileItem *> fileItemList() const;
 
     Settings &settings();
+    void clearSettings(void);
+    void initializeFromSettings(void);
 
 signals:
     void change(void);

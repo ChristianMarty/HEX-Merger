@@ -3,6 +3,6 @@
 
 #include "logic/fileMerger.h"
 
-static FileMerger fileMerger;
+
 
 #endif // MAIN_H

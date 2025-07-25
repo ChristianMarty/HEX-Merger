@@ -16,6 +16,8 @@ public:
     explicit FileItemWidget(FileItem *fileItem, QWidget *parent = nullptr);
     ~FileItemWidget();
 
+    void setBackground(QColor color);
+
 private slots:
 
 private:

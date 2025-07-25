@@ -21,6 +21,8 @@ private:
     QDomElement _root;
 
     Settings::Item _parseFileItem(QDomElement &item);
+    Settings::Transform _parseTransformItem(QDomElement &item);
+
     QuCLib::HexFileParser::Range _parseRange(QDomElement &item);
     uint32_t _parseNumber(QString number);
 

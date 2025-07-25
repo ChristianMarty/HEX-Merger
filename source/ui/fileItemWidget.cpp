@@ -2,6 +2,8 @@
 #include "ui_fileItemWidget.h"
 #include <QFileInfo>
 
+#include <QPalette>
+
 #include "main.h"
 
 FileItemWidget::FileItemWidget(FileItem *fileItem,  QWidget *parent)
@@ -19,10 +21,23 @@ FileItemWidget::~FileItemWidget()
     delete ui;
 }
 
+void FileItemWidget::setBackground(QColor color)
+{
+    QPalette palette  = QPalette();
+
+    palette.setColor(QPalette::Base, color);
+    setAutoFillBackground(true);
+    setPalette(palette);
+    show();
+}
+
 void FileItemWidget::_update()
 {
-    const QFileInfo info(_fileItem->filePath());
+    if(_fileItem == nullptr){
+        return;
+    }
 
+    const QFileInfo info(_fileItem->filePath());
     const QuCLib::HexFileParser &binary = _fileItem->binary();
 
     ui->label_path->setText(info.fileName());

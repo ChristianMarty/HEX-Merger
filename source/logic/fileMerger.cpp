@@ -1,4 +1,5 @@
 #include "fileMerger.h"
+#include "transformItem.h"
 
 FileMerger::FileMerger(QObject *parent)
     : QObject{parent}
@@ -6,6 +7,10 @@ FileMerger::FileMerger(QObject *parent)
 
 void FileMerger::initializeFromSettings()
 {
+    qDeleteAll(_fileItemList);
+    _fileItemList.clear();
+    _outputBinary.clear();
+
     for(const Settings::Item &item: _settings.input()){
         FileItem *fileItem = new FileItem(item);
         _fileItemList.append(fileItem);
@@ -14,6 +19,11 @@ void FileMerger::initializeFromSettings()
             binaryChunk.offset += item.offset;
             _outputBinary.insert(binaryChunk);
         }
+    }
+
+
+    for(const Settings::Transform &transform: _settings.output().transform){
+        TransformItem::applyTransform(_outputBinary, transform);
     }
 
     emit change();
@@ -32,6 +42,11 @@ QList<FileItem *> FileMerger::fileItemList() const
 Settings &FileMerger::settings()
 {
     return _settings;
+}
+
+void FileMerger::clearSettings()
+{
+    _settings = Settings();
 }
 
 void FileMerger::_update()
