@@ -18,6 +18,9 @@ void XmlReader::readFile(QString path)
     _document.setContent(&file);
     file.close();
 
+    QFileInfo fileInfo(path);
+    QDir::setCurrent(fileInfo.absolutePath());
+
     QDomElement root = _document.documentElement();
     if(root.tagName() != "hex-merger"){
         return;
@@ -56,7 +59,8 @@ Settings::Item XmlReader::_parseFileItem(QDomElement &item)
 
     QDomElement path = item.firstChildElement("path");
     if(!path.isNull()){
-        output.path = path.text().trimmed();
+        QFileInfo fileInfo(path.text().trimmed());
+        output.path = fileInfo.absoluteFilePath();
     }
 
     QDomElement offset = item.firstChildElement("offset");
