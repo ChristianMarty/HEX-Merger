@@ -29,7 +29,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    QString path = QFileDialog::getOpenFileName(this,tr("Open Settings File"), "", tr("Settings (*.xml)"));
+    QString path = QFileDialog::getOpenFileName(this,tr("Open Merger File"), "", tr("Settings (*.hexmerger)"));
     if(path.isEmpty()) return;
 
     _fileMerger.clearSettings();

@@ -53,7 +53,6 @@ void FileItemWidget::_update()
     ui->plainTextEdit_errors->clear();
     if(binary.errorCount()){
         ui->label_errors->setVisible(true);
-        ui->line_errors->setVisible(true);
         ui->plainTextEdit_errors->setVisible(true);
 
         for(const QuCLib::HexFileParser::FileError &fileError: binary.errors()){
@@ -63,7 +62,6 @@ void FileItemWidget::_update()
         }
     }else{
         ui->label_errors->setVisible(false);
-        ui->line_errors->setVisible(false);
         ui->plainTextEdit_errors->setVisible(false);
     }
 }

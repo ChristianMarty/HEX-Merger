@@ -30,13 +30,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_path">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="Line" name="line">
      <property name="frameShadow">
       <enum>QFrame::Plain</enum>
@@ -99,6 +92,13 @@
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_path">
+     <property name="text">
+      <string>TextLabel</string>
      </property>
     </widget>
    </item>
