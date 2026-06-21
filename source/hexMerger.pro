@@ -62,7 +62,7 @@ win32:CONFIG(release, debug|release){
     QMAKE_TARGET_COPYRIGHT = $$APPLICATION_COPYRIGHT
 
 
-    RELEASE_FOLDER = $$PWD/../build/Desktop_Qt_6_7_0_MinGW_64_bit-Release/release
+    RELEASE_FOLDER = $$PWD/../build/Desktop_Qt_6_11_1_MinGW_64_bit_Release/release
     DISTRIBUTION_FOLDER = $$PWD/../build/distribution
 
     RELEASE_FILES = \

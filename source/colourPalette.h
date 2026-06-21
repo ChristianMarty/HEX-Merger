@@ -1,19 +1,18 @@
-#ifndef COLOURPALETTE_H
-#define COLOURPALETTE_H
+#ifndef COLOUR_PALETTE_H
+#define COLOUR_PALETTE_H
 
-#include <QObject>
 #include <QList>
 #include <QColor>
 
 class ColourPalette {
 public:
     static inline QList<QColor> colours = {
-        QColor("#fbe7c6"),
-        QColor("#b4f8c8"),
-        QColor("#a0e7e5"),
-        QColor("#ffaebc")
+        QColor(QRgb{0xfbe7c6}),
+        QColor(QRgb{0xb4f8c8}),
+        QColor(QRgb{0xa0e7e5}),
+        QColor(QRgb{0xffaebc})
     };
 };
 
 
-#endif // COLOURPALETTE_H
+#endif // COLOUR_PALETTE_H

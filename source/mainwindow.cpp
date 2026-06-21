@@ -55,7 +55,7 @@ void MainWindow::_updateHexView()
 
         QString line = "<pre style=\"margin: 0; background-color:"+ColourPalette::colours[coloursIndex].name(QColor::HexRgb)+";\">";
 
-        for(uint16_t i = 0; i<item.data.length(); i+=16){
+        for(uint32_t i = 0; i<item.data.length(); i+=16){
             line += QString::number((uint16_t)item.offset+i,16).toUpper().rightJustified(8,'0').prepend("0x");
             line += "  : ";
 

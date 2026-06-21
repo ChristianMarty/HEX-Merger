@@ -53,7 +53,7 @@ void FileMerger::_update()
 {
     _outputBinary.clear();
 
-    for(auto item: _fileItemList){
+    for(FileItem *item: std::as_const(_fileItemList)){
         QuCLib::HexFileParser::BinaryChunk binaryChunk = item->binary().binary().at(0);
         binaryChunk.offset = item->item().offset;
 
