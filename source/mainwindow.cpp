@@ -110,4 +110,3 @@ void MainWindow::on_actionExport_As_triggered()
 
     _fileMerger.outputBinary().saveToFile(path);
 }
-

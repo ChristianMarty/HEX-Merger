@@ -4,8 +4,6 @@
 
 #include <QPalette>
 
-#include "main.h"
-
 FileItemWidget::FileItemWidget(FileItem *fileItem,  QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::FileItemWidget)
@@ -48,7 +46,7 @@ void FileItemWidget::_update()
     ui->label_fileRange->setText(_formatRange(binary.fileAddressRange()));
     ui->label_loadedRange->setText(_formatRange(binary.binaryAddressRange()));
 
-    ui->label_offset->setText("0x"+QString::number(_fileItem->item().offset, 16).rightJustified(8,'0').toUpper());
+    ui->label_offset->setText(QStringLiteral("0x")+QString::number(_fileItem->item().offset, 16).rightJustified(8,'0').toUpper());
 
     ui->plainTextEdit_errors->clear();
     if(binary.errorCount()){
@@ -56,7 +54,7 @@ void FileItemWidget::_update()
         ui->plainTextEdit_errors->setVisible(true);
 
         for(const QuCLib::HexFileParser::FileError &fileError: binary.errors()){
-            QString line = "Line "+QString::number(fileError.lineIndex)+" :";
+            QString line = QStringLiteral("Line ")+QString::number(fileError.lineIndex)+QStringLiteral(" :");
             line += QuCLib::HexFileParser::errorMessage(fileError);
             ui->plainTextEdit_errors->appendPlainText(line);
         }
@@ -68,9 +66,8 @@ void FileItemWidget::_update()
 
 QString FileItemWidget::_formatRange(const QuCLib::HexFileParser::Range &range)
 {
-    QString addressRange = "0x"+QString::number(range.minimum,16).rightJustified(8,'0').toUpper();
-    addressRange += " - 0x"+QString::number(range.maximum,16).rightJustified(8,'0').toUpper();
+    QString addressRange = QStringLiteral("0x")+QString::number(range.minimum,16).rightJustified(8,'0').toUpper();
+    addressRange += QStringLiteral(" - 0x")+QString::number(range.maximum,16).rightJustified(8,'0').toUpper();
 
     return addressRange;
 }
-
